@@ -22,3 +22,9 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+参照元
+RailsでBootstrapとFont-AwesomeはWebpackerで今時っぽく使おう
+https://qiita.com/rhistoba/items/f724dae231d7e28bf477
+RailsでWebアプリケーション開発【入門】
+https://qiita.com/enzen/items/14271ec8fdf01107d1ce
