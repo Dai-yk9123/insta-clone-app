@@ -1,2 +1,240 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+// 共通
+body {
+  box-sizing: border-box;
+  padding-top: 70px;
+  word-wrap: break-word;
+}
+
+// ヘッダー
+header {
+  z-index: 10;
+  background-color: #fff;
+  border-bottom: 1px solid #DBDBDB;
+  a.logo {
+    text-decoration: none;
+    font-size: 2em;
+    color: #000;
+    letter-spacing: 1px;
+    padding-top: 8px;
+  }
+}
+
+// フッター
+footer {
+  text-align: center;
+}
+
+// メインコンテンツ
+div.main {
+  background: #FAFAFA;
+}
+
+// ホームのアイコン
+aside.home-icon {
+  img {
+    width: 50px;
+    height: 50px;
+  }
+  a.user-name {
+    text-decoration: none;
+    font-style: 1.2em;
+    font-weight: bold;
+    color: #000;
+  }
+  p.user-full-name {
+    padding: 8px 0;
+    font-size: 5px;
+    color: #b3b3b3;
+  }
+}
+
+// フィード
+ol.feeds {
+  padding: 0;
+  list-style: none;
+  li {
+    background: #fff;
+  }
+  .post-user {
+    border-top: 1px solid rgb(219, 219, 219);
+    border-left: 1px solid rgb(219, 219, 219);
+    border-right: 1px solid rgb(219, 219, 219);
+    a {
+      text-decoration: none;
+      font-style: 1.2em;
+      font-weight: bold;
+      color: #000;
+    }
+  }
+  img.user-icon {
+    width: 30px;
+    height: 30px;
+  }
+  .post-picture {
+    border: 1px solid rgb(219, 219, 219);
+  }
+  .post-stat {
+    border-bottom: 1px solid rgb(219, 219, 219);
+    border-left: 1px solid rgb(219, 219, 219);
+    border-right: 1px solid rgb(219, 219, 219);
+    padding: 0 12px;
+    section.like-form form {
+      display: inline;
+    }
+    .stat-button {
+      cursor: pointer;
+    }
+    .stat-button svg.liked-heart {
+      color: red;
+    }
+    .user-post span {
+      font-size: 14px;
+    }
+    .user-post span.user-name{
+      font-weight: bold;
+
+    }
+    .date {
+      padding: 8px 0;
+      font-size: 5px;
+      color: #b3b3b3;
+    }
+  }
+}
+
+// ポスト
+ol.posts {
+  list-style: none;
+  li {
+      padding: 0;
+      display: inline-block;
+  }
+  img {
+    object-fit: cover;
+  }
+}
+
+// ポストアップローダー
+#picture_field {
+  img {
+    object-fit: cover;
+    width: 300px;
+    height: 300px;
+    &:hover{
+      background-color: rgb(219, 219, 219);
+      transition: 0.3s ease-out;
+      opacity: 0.9;
+    }
+  }
+}
+
+// ユーザーアイコン
+.user-info img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+// ユーザーステータス
+.user-stat a{
+  color: #262525
+
+}
+
+// ユーザーインデックス
+.users {
+  list-style: none;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid rgb(194, 194, 194);
+  }
+  img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}
+
+// 編集フォームアイコン
+.user-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+// 写真ページ
+.picture-page {
+  .scroll-box {
+    height: 200px;
+    overflow: auto;
+  }
+  .post-user {
+    padding: 8px 0;
+    a {
+      text-decoration: none;
+      font-style: 1.2em;
+      font-weight: bold;
+      color: #000;
+    }
+    .date {
+      padding: 8px 0;
+      font-size: 5px;
+      color: #b3b3b3;
+    }
+    img.user-icon {
+      height: 50px;
+      width: 50px;
+    }
+  }
+  .users-comments {
+    ol.comments {
+      padding: 0;
+      list-style: none;
+      li {
+        padding: 8px 0;
+      }
+      a {
+        text-decoration: none;
+        font-style: 1.2em;
+        font-weight: bold;
+        color: #000;
+      }
+      img.user-icon {
+        height: 50px;
+        width: 50px;
+      }
+      .date {
+        padding: 8px 0;
+        font-size: 5px;
+        color: #b3b3b3;
+      }
+    }
+  }
+
+}
+
+// エラーメッセージ
+div#error_explanation {
+  ul {
+    list-style: none;
+    li {
+      color: rgb(255, 0, 0);
+    }
+  }
+}
+
+div.field_with_errors {
+  label {
+    color: rgb(255, 0, 0);
+  }
+  input {
+    border: 1px solid rgb(255, 0, 0);
+  }
+}

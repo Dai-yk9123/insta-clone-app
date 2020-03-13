@@ -53,7 +53,22 @@ end
 
 group :production do
   gem 'pg', '0.20.0'
+  gem 'fog'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data'
+
+# イメージアップロード
+gem 'carrierwave'
+# イメージ加工
+gem 'mini_magick'
+# サンプルデータ作成
+gem 'faker'
+# ページネーション
+gem 'kaminari'
+# フェイスブック認証
+gem 'omniauth'
+gem 'omniauth-facebook'
+# 国際化（日本語化）
+# 未実装

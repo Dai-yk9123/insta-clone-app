@@ -1,0 +1,7 @@
+<%= form_with(model: post.likes.find_by(user_id: current_user.id),
+              method: :delete) do |form| %>
+  <span class="stat-button" onClick="$('#unlike-<%= post.id %>').click()">
+    <i class="fas fa-heart liked-heart"></i>
+  </span>
+  <%= form.submit "unlike", class: "btn btn-danger", style: "display:none;", id: "unlike-#{post.id}" %>
+<% end %>
