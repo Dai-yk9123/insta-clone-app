@@ -1,0 +1,56 @@
+<% provide(:title, "@#{@user.user_name}") %>
+<div class="row">
+  <div class="col-4">
+    <section class="user-info">
+        <%= user_icon(@user) %>
+    </section>
+  </div>
+  <div class="col-8 p-4">
+    <h3>
+      <%= @user.user_name %>
+      <% if current_user?(@user) %>
+        <button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle" id="navbarDropdown2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+          Edit profile<span class="ml-1"><i class="fas fa-cog"></i></span>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+          <%= link_to "Setting profile", edit_user_path(current_user), class: "dropdown-item" %>
+          <%= link_to "Setting password", "/users/#{current_user.id}/password/edit", class: "dropdown-item" %>
+        </div>
+      <% else %>
+        <div id="follow_form" class="ml-2" style="display: inline-block;">
+          <% if current_user.following?(@user) %>
+            <%= render 'unfollow' %>
+          <% else %>
+            <%= render 'follow' %>
+          <% end %>
+        </div>
+      <% end %>
+    </h3>
+    <p><%= @user.url %></p>
+    <%= simple_format(h(@user.description), {},sanitize: false) %>
+    <p class="user-stat my-3">
+      <span><%= "Posts #{@user.posts.count}" %></span>
+      <%= link_to "Follow #{@user.following.count}", following_user_path, id: "following", class: "ml-3", style: "text-decoration: none;" %>
+      <%= link_to "Follower #{@user.followers.count}", followers_user_path, id: "followers", class: "ml-3", style: "text-decoration: none;" %>
+    </p>
+  </div>
+</div>
+<div>
+  <hr class="my-4">
+  <h3>Posts</h3>
+  <div>
+    <% if @user.posts.any? %>
+      <ol class="posts row">
+        <% @posts.each do |post| %>
+          <li id="post-<%= post.id %>" class="col-4 p-md-2 p-sm-1">
+            <%= link_to image_tag(post.picture.url, class: "w-100"),post_path(post) %>
+            <p class="like-count like-count-<%= post.id %>"><span><i class="fas fa-heart liked-heart"></i></span><%= post.likes.count %></p>
+          </li>
+        <% end %>
+      </ol>
+    <% else %>
+      <p class="col-4">Upload picture<br>　and Share your story!</p>
+    <% end %>
+    <%= paginate @posts %>
+  </div>
+</div>

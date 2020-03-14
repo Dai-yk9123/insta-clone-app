@@ -1,0 +1,16 @@
+<li class="comment row">
+  <div class="col-3">
+    <%= link_to user_icon(comment.commenter), user_path(comment.commenter) %>
+  </div>
+  <div class="col-9">
+    <%= link_to comment.commenter.user_name, user_path(comment.commenter), class: "ml-md-2" %>
+    <span class="ml-md-2"><%= comment.comment %></span>
+    <div class="date">
+      <% if comment.created_at < 7.days.ago %>
+        <%= comment.created_at.strftime('%Y/%m/%d') %>
+      <% else %>
+        <%= "#{time_ago_in_words(comment.created_at)} ago." %>
+      <% end %>
+    </div>
+  </div>
+</li>

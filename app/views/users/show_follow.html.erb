@@ -1,0 +1,17 @@
+<% provide(:title, @title) %>
+<div class="row">
+  <div class="col-md-8">
+    <h3><%= @title %></h3>
+    <% if @users.any? %>
+      <ul class="users follow">
+        <%= render @users %>
+      </ul>
+      <%= paginate @users %>
+    <% end %>
+  </div>
+  <aside class="col-md-4 home-icon d-none d-md-block">
+    <%= link_to user_icon(@user, size: 50), @user %>
+    <%= link_to @user.user_name, @user, class: "ml-2" %>
+    </section>
+  </aside>
+</div>

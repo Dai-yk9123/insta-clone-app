@@ -1,0 +1,45 @@
+<% provide(:title, "Upload picture") %>
+<h1>Upload picture</h1>
+<div class="row">
+  <div class="col-md-6">
+    <%= form_with(model: @post, local: true) do |form| %>
+      <%= render 'shared/error_messages', object: form.object %>
+
+      <div class="form-group">
+        <div id="picture_field" onClick="$('#file').click()">
+          <% if @post.picture.present? %>
+            <%= image_tag @post.picture.url %>
+          <% else %>
+            <%= image_tag "upload.png" %>
+          <% end %>
+        </div>
+        <%= form.file_field :picture, class: 'picture', style: "display:none;", id: "file" %>
+        <script type="text/javascript">
+          $(function() {
+            $fileField = $('#file')
+            $($fileField).on('change', $fileField, function(e) {
+              file = e.target.files[0]
+              reader = new FileReader(),
+              $preview = $("#picture_field");
+              reader.onload = (function(file) {
+                return function(e) {
+                  $preview.empty();
+                  $preview.append($('<img>').attr({
+                    src: e.target.result,
+                    class: "preview",
+                    title: file.name
+                  }));
+                };
+              })(file);
+              reader.readAsDataURL(file);
+            });
+          });
+        </script>
+      </div>
+      <div class="form-group">
+        <%= form.text_area :content, placeholder: "Compose new post...", class: "form-control" %>
+      </div>
+      <%= form.submit "Picture upload", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

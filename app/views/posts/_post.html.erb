@@ -1,0 +1,46 @@
+<li id="post-<%= post.id %>" data-post-id="<%=post.id %>" class="mb-sm-3 mb-md-5">
+  <div class="post-user p-3">
+    <%= link_to user_icon(post.user), user_path(post.user) %>
+    <%= link_to post.user.user_name, user_path(post.user), class: "ml-2" %>
+  </div>
+  <div class="post-picture">
+    <%= link_to image_tag(post.picture.url, class: "w-100"), post_path(post) %>
+  </div>
+  <div class="post-stat">
+    <section id="post-<%= post.id %>-like-form" class="like-form" style="display:inline;">
+      <% if post.like?(current_user) %>
+        <%= render "likes/unlike", post: post %>
+      <% else %>
+        <%= render "likes/like", post: post %>
+      <% end %>
+    </section>
+    <span id="likes-post-<%= post.id %>"><%= post.likes.count %></span>
+    <div class="user-post">
+      <% if post.content.present? %>
+        <span class="user-name"><%= post.user.user_name %></span>
+        <span><%= post.content %></span>
+      <% end %>
+    </div>
+    <div class="comment-box">
+      <%= form_with(model: post.comments.build) do |form| %>
+        <%= render 'shared/error_messages', object: form.object %>
+
+        <%= form.hidden_field :commented_id, value: post.id %>
+        <%= form.hidden_field :commenter_id, value: current_user.id %>
+        <div class="form-group">
+          <%= form.text_field :comment, class: 'form-control', placeholder: 'Comments...' %>
+        </div>
+        <div class="form-group">
+          <%= form.submit "Post comment", class:"btn btn-outline-info btn-sm" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="date">
+      <% if post.created_at < 7.days.ago %>
+        <%= post.created_at.strftime('%Y/%m/%d') %>
+      <% else %>
+        <%= "#{time_ago_in_words(post.created_at)} ago." %>
+      <% end %>
+    </div>
+  </div>
+</li>

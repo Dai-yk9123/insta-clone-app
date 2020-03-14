@@ -1,0 +1,7 @@
+<%= form_with(model: post.likes.build) do |form| %>
+  <span class="stat-button" onClick="$('#like-<%= post.id %>').click()">
+    <i id="<%= post.id %>" class="far fa-heart"></i>
+  </span>
+  <span><%= hidden_field_tag :post_id, post.id %></span>
+  <%= form.submit "like", class: "btn btn-danger", style: "display:none;", id: "like-#{post.id}" %>
+<% end %>

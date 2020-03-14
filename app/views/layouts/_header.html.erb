@@ -1,0 +1,48 @@
+<header class="fixed-top" >
+  <div class="container">
+    <nav class="navbar navbar-expand-md navbar-light">
+      <%= link_to "D.stagram", root_path, class: 'navbar-brand logo' %>
+      <button class="navbar-toggler" type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        ria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <form class="form-inline my-lg-0 disabled" aria-disabled="true">
+          <input class="form-control mr-sm-2 disabled" aria-disabled="true"
+            type="search" placeholder="Sorry,features not yet..."
+            aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0 disabled" type="submit">
+            Search
+          </button>
+        </form>
+        <ul class="navbar-nav" id="mr-auto">
+          <li class="nav-item"><%= link_to "Home", root_path, class: 'nav-link' %></li>
+          <% if logged_in? %>
+            <li class="nav-item"><%= link_to "Users", users_path, class: 'nav-link' %></li>
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown"
+                role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Account
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <%= link_to "Profile", current_user, class: "dropdown-item" %>
+                <%= link_to "Setting profile", "/users/#{current_user.id}/edit", class: "dropdown-item" %>
+                <%= link_to "Setting password", "/users/#{current_user.id}/password/edit", class: "dropdown-item" %>
+                <div class="dropdown-divider"></div>
+                <%= link_to "Log out", logout_path, class: "dropdown-item", method: :delete %>
+              </div>
+            </li>
+          <% else %>
+            <li class="nav-item"><%= link_to "Log in", login_path, class: 'nav-link' %></li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>

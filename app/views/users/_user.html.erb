@@ -1,0 +1,7 @@
+<li>
+  <%= link_to user_icon(user, size: 80), user %>
+  <%= link_to user.user_name, user %>
+  <% if current_user.admin? && !current_user?(user) %>
+    | <%= link_to "Delete", user, method: "delete", data: { confirm: "You sure?"} %>
+  <% end %>
+</li>

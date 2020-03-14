@@ -1,0 +1,35 @@
+<% if logged_in? %>
+  <div class="row">
+    <div class="col-md-8">
+      <% if current_user.feed.any? %>
+        <ol class="feeds">
+          <%= render @posts %>
+        </ol>
+        <%= paginate @posts %>
+      <% else %>
+        <h3>Follow other User, and Share your story</h3>
+        <%= link_to 'Looking for your friends, other users', users_path, class: "btn btn-info" %>
+      <% end %>
+    </div>
+    <aside class="col-md-4 home-icon d-none d-md-block">
+      <div class="row">
+        <div class="col-3">
+          <%= link_to user_icon(current_user, size: 50), current_user %>
+        </div>
+        <div class="col-9">
+          <%= link_to current_user.user_name, current_user, class: "user-name" %>
+          <p class="user-full-name"><%= current_user.name %></p>
+        </div>
+      </div>
+    </aside>
+  </div>
+<% else %>
+  <div class="container lp l">
+    <div class="m-3">
+      <h1 class="display-4">Welcome to the D.stagram!</h1>
+      <hr class="my-4">
+      <p>This is the clone application of the Instagram, please play and advice us.</p>
+      <%= link_to 'Sign up now!', signup_path, class: "btn btn-primary btn-lg" %>
+    </div>
+  </div>
+<% end %>

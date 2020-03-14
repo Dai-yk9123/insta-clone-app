@@ -1,0 +1,74 @@
+<% provide(:title, "@#{@post.user.user_name} Pictures") %>
+<div class="picture-page">
+  <div class="row">
+    <div class="col-md-8">
+      <%= image_tag @post.picture.url, class: "w-100" %>
+    </div>
+    <aside class="col-md-4">
+      <div class="scroll-box">
+        <div class="post-user">
+          <div class="row">
+            <div class="col-3">
+              <%= link_to user_icon(@post.user), user_path(@post.user) %>
+            </div>
+            <div class="col-9">
+              <%= link_to @post.user.user_name, user_path(@post.user), class: "ml-2" %>
+              <span><%= @post.content if @post.content %></span>
+              <div class="date">
+                <% if @post.created_at < 7.days.ago %>
+                  <%= @post.created_at.strftime('%Y/%m/%d') %>
+                <% else %>
+                  <%= "#{time_ago_in_words(@post.created_at)} ago." %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="users-comments">
+          <% if @comments.any? %>
+            <ol class="comments">
+              <%= render @comments %>
+            </ol>
+          <% end %>
+        </div>
+      </div>
+      <section id="post-<%= @post.id %>-like-form" class="like-form" style="display:inline;">
+        <% if @post.like?(current_user) %>
+          <%= render "likes/unlike", post: @post %>
+        <% else %>
+          <%= render "likes/like", post: @post %>
+        <% end %>
+      </section>
+      <span id="likes-post-<%= @post.id %>"><%= @post.likes.count %></span>
+      <div class="comment-box">
+        <%= form_with(model: @post.comments.build) do |form| %>
+          <%= render 'shared/error_messages', object: form.object %>
+
+          <%= form.hidden_field :commented_id, value: @post.id %>
+          <%= form.hidden_field :commenter_id, value: current_user.id %>
+          <div class="form-group">
+            <%= form.text_field :comment, class: 'form-control', placeholder: 'Comments...' %>
+          </div>
+          <div class="form-group">
+            <%= form.submit "Post comment", class:"btn btn-outline-info btn-sm" %>
+          </div>
+        <% end %>
+      </div>
+    </aside>
+  </div>
+  <div>
+    <hr class="my-4">
+    <h3>Posts</h3>
+    <div>
+      <ol class="posts row">
+        <% @posts.each do |post| %>
+          <li id="post-<%= post.id %>" class="col-4 p-md-2 p-sm-1">
+            <%= link_to image_tag(post.picture.url, class: "w-100"),post_path(post) %>
+            <p class="like-count like-count-<%= post.id %>"><span><i class="fas fa-heart liked-heart"></i><%= post.likes.count %></span></p>
+          </li>
+        <% end %>
+      </ol>
+      <%= paginate @posts %>
+    </div>
+  </div>
+</div>
