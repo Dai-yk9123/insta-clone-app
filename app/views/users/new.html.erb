@@ -25,10 +25,11 @@
         <%= form.label :password_confirmation, 'Confirmation' %>
         <%= form.password_field :password_confirmation, class: 'form-control' %>
       </div>
+      <%= form.check_box :consent %>
+      <%= link_to 'Terms of service', contact_path, class: 'terms' %>
       <div class="form-group">
         <%= form.submit 'Create my account', class: "btn btn-primary mt-3 w-100" %>
       </div>
-
     <% end %>
   </div>
 </div>
