@@ -32,6 +32,14 @@
           <% end %>
         </div>
       </div>
+      <section id="post-<%= @post.id %>-like-form" class="like-form" style="display:inline;">
+        <% if @post.like?(current_user) %>
+          <%= render "likes/unlike", post: @post %>
+        <% else %>
+          <%= render "likes/like", post: @post %>
+        <% end %>
+      </section>
+      <span id="likes-post-<%= @post.id %>"><%= @post.likes.count %></span>
       <div class="comment-box">
         <%= form_with(model: @post.comments.build) do |form| %>
           <%= render 'shared/error_messages', object: form.object %>
@@ -56,6 +64,7 @@
         <% @posts.each do |post| %>
           <li id="post-<%= post.id %>" class="col-4 p-md-2 p-sm-1">
             <%= link_to image_tag(post.picture.url, class: "w-100"),post_path(post) %>
+            <p class="like-count like-count-<%= post.id %>"><span><i class="fas fa-heart liked-heart"></i><%= post.likes.count %></span></p>
           </li>
         <% end %>
       </ol>

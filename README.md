@@ -36,3 +36,5 @@ https://qiita.com/jaramon/items/248bcb4b56e9fed8fc90
 https://qiita.com/memetics/items/214babcebae32c52933c
 【Rails】Facebookでユーザー認証する
 https://qiita.com/t12u/items/52721d3ea2ce1e605ae9
+Railsの開発環境でHTTPSを有効にする
+https://blog.y-yagi.tech/posts/rails_ssl/

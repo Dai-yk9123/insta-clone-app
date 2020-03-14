@@ -43,7 +43,8 @@
       <ol class="posts row">
         <% @posts.each do |post| %>
           <li id="post-<%= post.id %>" class="col-4 p-md-2 p-sm-1">
-            <%= image_tag post.picture.url, class: "w-100" %>
+            <%= link_to image_tag(post.picture.url, class: "w-100"),post_path(post) %>
+            <p class="like-count like-count-<%= post.id %>"><span><i class="fas fa-heart liked-heart"></i></span><%= post.likes.count %></p>
           </li>
         <% end %>
       </ol>
